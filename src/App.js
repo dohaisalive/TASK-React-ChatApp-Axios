@@ -1,10 +1,17 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import ChatRoom from './components/ChatRoom';
-import ChatRoomsList from './components/ChatRoomsList';
-import { Route, Switch } from 'react-router';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import ChatRoom from "./components/ChatRoom";
+import ChatRoomsList from "./components/ChatRoomsList";
+import { Route, Switch } from "react-router";
+import roomStore from "./stores/roomStore";
+import { useEffect } from "react";
+
 function App() {
+  useEffect(() => {
+    roomStore.fetchRoom();
+  }, []);
+
   return (
     <div className="__main">
       <div className="main__chatbody">
