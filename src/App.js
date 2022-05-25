@@ -8,9 +8,9 @@ import roomStore from "./stores/roomStore";
 import { useEffect } from "react";
 
 function App() {
-  useEffect(() => {
-    roomStore.fetchRoom();
-  }, []);
+  // useEffect(() => {
+  //   roomStore.fetchRoom();
+  // }, []);
 
   return (
     <div className="__main">

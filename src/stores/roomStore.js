@@ -42,30 +42,31 @@ class RoomStore {
   };
 
   createRoom = async (room) => {
+    this.rooms.push(room);
     try {
       const response = await axios.post(
         "https://coded-task-axios-be.herokuapp.com/rooms",
         room
       );
-      this.rooms.push([...this.rooms, room]);
     } catch (error) {
       console.error(error);
     }
   };
 
   deleteRoom = async (roomId) => {
+    this.rooms = this.rooms.filter((element) => element.id !== roomId);
     try {
       const response = await axios.delete(
         `https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`
       );
-      this.rooms = this.rooms.filter((element) => element.id !== roomId);
     } catch (error) {
       console.error(error);
     }
   };
 
   createMsg = (roomId, msg) => {
-    const room = this.rooms.find((_room) => _room.id === +roomId);
+    const room = this.rooms.find((room) => room.id === +roomId);
+    console.log(room);
     room.messages.push(msg);
   };
 
@@ -87,4 +88,5 @@ class RoomStore {
 }
 
 const roomStore = new RoomStore();
+roomStore.fetchRoom(); //important!!!!! to render stuff!!!!
 export default roomStore;
